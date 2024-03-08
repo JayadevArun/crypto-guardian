@@ -30,6 +30,35 @@ def encrypt():
         
     elif passwd!="12345":
         messagebox.showerror("Encryption","Invalid password")
+
+def decrypt():
+    passwd=code.get()
+    
+    if passwd=="12345":
+        screen2=Toplevel(screen)
+        img_icon=PhotoImage(file="icon.png")
+        screen2.iconphoto(False,img_icon)
+        screen2.title("Decryption")
+        screen2.geometry("400x200")
+        screen2.configure(bg="#00bd56")
+        
+        message=Text_1.get(1.0,END)
+        decode_message=message.encode("ascii")
+        base64_bytes=base64.b64decode(decode_message)
+        decrypt=base64_bytes.decode("ascii")
+        
+        Label(screen2,text="DECRYPT",fg="white",bg="#00bd56",font="arial").place(x=10,y=0)
+        Text_2=Text(screen2,font="Robote 10",bg="white",relief=GROOVE,wrap=WORD,bd=0)
+        Text_2.place(x=10,y=40,width=350,height=150)
+        
+        Text_2.insert(END,decrypt)
+        
+    elif passwd=="":
+        messagebox.showerror("Decryption","Enter password")
+        
+    elif passwd!="12345":
+        messagebox.showerror("Decryption","Invalid password")
+
 def main():
     global screen
     global Text_1
