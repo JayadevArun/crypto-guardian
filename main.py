@@ -2,6 +2,34 @@ from tkinter import *
 from tkinter import messagebox
 import os
 import base64
+
+def encrypt():
+    passwd=code.get()
+    
+    if passwd=="12345":
+        screen1=Toplevel(screen)
+        img_icon=PhotoImage(file="icon.png")
+        screen1.iconphoto(False,img_icon)
+        screen1.title("Encryption")
+        screen1.geometry("400x200")
+        screen1.configure(bg="#ed3833")
+        
+        message=Text_1.get(1.0,END)
+        encode_message=message.encode("ascii")
+        base64_bytes=base64.b64encode(encode_message)
+        encrypt=base64_bytes.decode("ascii")
+        
+        Label(screen1,text="ENCRYPT",fg="white",bg="#ed3833",font="arial").place(x=10,y=0)
+        Text_2=Text(screen1,font="Robote 10",bg="white",relief=GROOVE,wrap=WORD,bd=0)
+        Text_2.place(x=10,y=40,width=350,height=150)
+        
+        Text_2.insert(END,encrypt)
+        
+    elif passwd=="":
+        messagebox.showerror("Encryption","Enter password")
+        
+    elif passwd!="12345":
+        messagebox.showerror("Encryption","Invalid password")
 def main():
     global screen
     global Text_1
